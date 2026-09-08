@@ -12,6 +12,80 @@
 .sentinelle :focus-visible { outline: 3px solid #1976d2; outline-offset: 3px; }
 .sentinelle .btn { min-height: 44px; }
 
+.sentinelle-crise {
+	margin: 1rem 0 1.5rem;
+	background: #fff7f6;
+	border: 1px solid #e7b9b5;
+	border-left: 6px solid var(--sentinelle-danger);
+	border-radius: 6px;
+	box-shadow: 0 12px 30px rgba(89, 24, 24, .08);
+}
+.sentinelle-crise__entete {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(18rem, .8fr);
+	gap: 2rem;
+	align-items: center;
+	padding: 1.5rem;
+}
+.sentinelle-crise__signal {
+	display: inline-block;
+	margin: 0 0 .45rem;
+	padding: .2rem .45rem;
+	color: #fff;
+	background: var(--sentinelle-danger);
+	font-size: .72rem;
+	font-weight: 800;
+	letter-spacing: .09em;
+	text-transform: uppercase;
+}
+.sentinelle-crise h2 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.35rem); line-height: 1.05; }
+.sentinelle-crise__bilan { margin: .65rem 0 0; color: #633536; font-size: 1.05rem; }
+.sentinelle-crise__bilan strong { color: var(--sentinelle-danger); font-size: 1.5em; font-variant-numeric: tabular-nums; }
+.sentinelle-crise__commande { padding-left: 2rem; border-left: 1px solid #e7b9b5; }
+.sentinelle-crise__commande form { margin: 0; }
+.sentinelle-crise__commande p { margin: .55rem 0 0; color: #6e4a4a; font-size: .875rem; }
+.sentinelle .sentinelle-crise__primaire {
+	width: 100%;
+	min-height: 52px;
+	padding-inline: 1.1rem;
+	background: var(--sentinelle-danger);
+	border-color: var(--sentinelle-danger);
+	font-size: 1rem;
+	font-weight: 750;
+}
+.sentinelle-crise__proteges { color: var(--sentinelle-danger) !important; font-weight: 700; }
+.sentinelle-crise__parcours {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	border-top: 1px solid #ead3d1;
+	border-bottom: 1px solid #ead3d1;
+	list-style: none;
+}
+.sentinelle-crise__parcours li {
+	display: grid;
+	grid-template-columns: 2rem 1fr;
+	gap: 0 .65rem;
+	padding: .9rem 1.1rem;
+	color: var(--sentinelle-muted);
+}
+.sentinelle-crise__parcours li + li { border-left: 1px solid var(--sentinelle-line); }
+.sentinelle-crise__parcours span { grid-row: 1 / 3; align-self: center; color: #a16c69; font-size: 1.35rem; font-weight: 800; }
+.sentinelle-crise__parcours strong { color: var(--sentinelle-ink); }
+.sentinelle-crise__parcours small { display: block; }
+.sentinelle-crise__parcours .est-actif { background: #fff0ef; }
+.sentinelle-crise__parcours .est-actif span,
+.sentinelle-crise__parcours .est-actif strong { color: var(--sentinelle-danger); }
+.sentinelle-crise__secondaires { display: flex; align-items: center; gap: 1rem; padding: .85rem 1.5rem; }
+.sentinelle-crise__secondaires form { margin: 0; }
+.sentinelle-crise__secondaires a { color: var(--sentinelle-muted); font-weight: 600; }
+
+.sentinelle-analyse { margin-top: 1.5rem; border-top: 1px solid var(--sentinelle-line); }
+.sentinelle-analyse > summary { padding: 1rem 0; color: var(--sentinelle-ink); cursor: pointer; font-size: 1.05rem; font-weight: 700; }
+.sentinelle-analyse__contenu { padding-top: .25rem; }
+
 .sentinelle-etat {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
@@ -172,6 +246,12 @@
 .sentinelle-pagination button { min-width: 44px; min-height: 44px; }
 
 @media (max-width: 760px) {
+	.sentinelle-crise__entete { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.15rem; }
+	.sentinelle-crise__commande { padding: 1rem 0 0; border-top: 1px solid #e7b9b5; border-left: 0; }
+	.sentinelle-crise__parcours { grid-template-columns: 1fr; }
+	.sentinelle-crise__parcours li + li { border-top: 1px solid var(--sentinelle-line); border-left: 0; }
+	.sentinelle-crise__secondaires { align-items: stretch; flex-direction: column; padding: 1rem 1.15rem; }
+	.sentinelle-crise__secondaires .btn { width: 100%; }
 	.sentinelle-etat { grid-template-columns: 1fr; }
 	.sentinelle-actions__danger { margin-left: 0; }
 	.sentinelle-filtres { grid-template-columns: 1fr; }

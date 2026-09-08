@@ -201,6 +201,12 @@ verifier(
 	strpos($squelette, 'data-sentinelle-quick-wins') !== false && strpos($squelette, 'data-sentinelle-tout') !== false,
 	'le tableau doit proposer la sélection de page et les quick wins critiques'
 );
+verifier(
+	strpos($squelette, 'data-sentinelle-mode-attaque') !== false
+		&& strpos($squelette, 'sentinelle_quarantaine,isoler-tout:') !== false
+		&& strpos($squelette, 'sentinelle-analyse') !== false,
+	'le mode sous attaque doit proposer la contention immédiate et reléguer l’analyse détaillée'
+);
 $javascript = file_get_contents(dirname(__DIR__) . '/prive/themes/spip/javascript/sentinelle.js');
 verifier(
 	strpos($javascript, "getAttribute('data-gravite') === 'critique'") !== false,

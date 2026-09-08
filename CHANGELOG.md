@@ -1,5 +1,13 @@
 # Journal des modifications
 
+## [1.2.0] - 2026-09-08
+
+### Added
+
+- Un mode « Sous attaque » remplace le tableau de bord par une commande de crise lorsque des fichiers critiques sont détectés.
+- Une action principale isole en un lot restaurable tous les fichiers critiques déplaçables, puis guide l’administrateur vers un nouveau scan et la vérification finale.
+- Le nombre de chemins protégés est annoncé avant l’action et l’analyse complète reste accessible dans un panneau secondaire.
+
 ## [1.1.0] - 2026-09-08
 
 ### Added
