@@ -52,7 +52,7 @@ compromis, elle fige la compromission et rend la vérification de cohérence ave
 2. **Lire.** Une ligne par fichier, la règle la plus grave en tête. **N'ouvrir aucun
    de ces chemins dans un navigateur** — plusieurs de ces fichiers réagissent à une
    simple requête `GET`.
-3. **Isoler.** Cocher les fichiers vérifiés puis *Isoler la sélection*, ou agir fichier par fichier. Réversible.
+3. **Isoler.** Cocher les fichiers vérifiés puis *Isoler la sélection*, ou agir fichier par fichier. La case d’en-tête sélectionne la page affichée ; *Quick wins* sélectionne tous les fichiers critiques isolables, y compris sur les autres pages, sans inclure les chemins protégés. L’action reste réversible et demande confirmation.
 4. **Vérifier le site.** Front et espace privé. Un faux positif se rattrape en un clic
    sur *Restaurer*.
 5. **Poser l'empreinte.** Seulement maintenant. Tant que des alertes critiques

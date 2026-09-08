@@ -96,6 +96,8 @@
 .sentinelle-filtres input,
 .sentinelle-filtres select { min-height: 44px; width: 100%; }
 .sentinelle-resultats { color: var(--sentinelle-muted); grid-column: 1 / -1; margin: 0; }
+.sentinelle-quick-wins { grid-column: 1 / -1; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.sentinelle-quick-wins span { color: var(--sentinelle-muted); font-size: .875rem; }
 
 .sentinelle-table-wrap { overflow-x: auto; }
 .sentinelle-table { width: 100%; table-layout: fixed; }
@@ -106,6 +108,7 @@
 .sentinelle-table--quarantaine th:last-child { width: 8rem; }
 .sentinelle-table td { vertical-align: top; padding-block: .8rem; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) td:first-child { text-align: center; }
+.sentinelle-tout { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; cursor: pointer; }
 
 .sentinelle-chemin-ligne { display: flex; gap: .4rem; align-items: start; min-width: 0; }
 .sentinelle-chemin {
