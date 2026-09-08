@@ -139,6 +139,19 @@ function sentinelle_vue_resume($rien = ''): array {
 	}
 	$critique = (int) $mesures['par_gravite']['critique'];
 	$haut = (int) $mesures['par_gravite']['haut'];
+	$critiques_isolables = [];
+	$critiques_proteges = [];
+	foreach ($findings as $finding) {
+		$chemin = (string) ($finding['chemin'] ?? '');
+		if ($chemin === '' || ($finding['gravite'] ?? '') !== 'critique') {
+			continue;
+		}
+		if (sentinelle_quarantaine_autorisee($chemin) === true) {
+			$critiques_isolables[$chemin] = true;
+		} else {
+			$critiques_proteges[$chemin] = true;
+		}
+	}
 	$critiques_ouverts = (int) ($scan['compte']['critique'] ?? $critique);
 	$classe = $erreur !== '' || $critique ? 'error' : ($perime || $haut ? 'notice' : 'success');
 	$quarantaine_nb = count(sentinelle_quarantaine_actives(sentinelle_racine()));
@@ -152,6 +165,8 @@ function sentinelle_vue_resume($rien = ''): array {
 		'scan_duree' => (string) ($scan['duree'] ?? ''),
 		'scan_analyses' => (int) ($scan['analyses'] ?? 0),
 		'critique' => $critique,
+		'critiques_isolables' => count($critiques_isolables),
+		'critiques_proteges' => count($critiques_proteges),
 		'haut' => $haut,
 		'moyen' => (int) $mesures['par_gravite']['moyen'],
 		'fichiers_signales' => (int) $mesures['fichiers'],

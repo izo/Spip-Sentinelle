@@ -52,6 +52,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = [
 	'etape_baseline' => 'Empreinte',
 	'etape_surveillance' => 'Surveillance',
 
+	// Mode de crise
+	'crise_signal' => 'Sous attaque',
+	'crise_titre' => 'Contenir l’incident',
+	'crise_critiques' => 'fichier(s) critique(s) détecté(s)',
+	'crise_bouton_contenir' => 'Isoler maintenant — @nb@ fichier(s)',
+	'crise_contenir_aide' => 'L’action est réversible. @proteges@ chemin(s) protégé(s) seront laissés en place pour décision humaine.',
+	'crise_aucun_isolable' => 'Aucun fichier critique ne peut être isolé automatiquement.',
+	'crise_parcours_label' => 'Réponse à l’incident',
+	'crise_etape_contenir' => 'Contenir',
+	'crise_etape_contenir_aide' => 'Sortir les fichiers exécutables du site',
+	'crise_etape_rescanner' => 'Rescanner',
+	'crise_etape_rescanner_aide' => 'Confirmer que la menace a disparu',
+	'crise_etape_verifier' => 'Vérifier',
+	'crise_etape_verifier_aide' => 'Traiter les chemins protégés restants',
+	'crise_bouton_rescanner' => 'Rescanner après isolement',
+	'crise_voir_analyse' => 'Ouvrir l’analyse détaillée',
+	'analyse_detaillee' => 'Analyse détaillée — @nb@ fichier(s) signalé(s)',
+
 	// Empreinte de référence
 	'empreinte_absente' => 'Aucune empreinte de référence. Seuls les indicateurs déjà catalogués sont détectés — un webshell inédit passe inaperçu.',
 	'empreinte_posee' => 'Empreinte de référence : @nb@ fichiers, posée le @date@.',
@@ -166,6 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = [
 	'action_operation_inconnue' => 'Opération inconnue.',
 	'action_selection_vide' => 'Aucun fichier signalé valide n’a été sélectionné.',
 	'action_selection_resultat' => '@faits@ fichier(s) isolé(s) dans le lot @lot@ · @refuses@ protégé(s) · @echecs@ échec(s).',
+	'action_isoler_tout_resultat' => '@faits@ fichier(s) critique(s) isolé(s) dans le lot @lot@ · @refuses@ chemin(s) protégé(s) laissé(s) en place · @echecs@ échec(s).',
 	'action_chemin_non_signale' => 'Ce chemin ne figure pas dans le dernier scan ; rien n’a été déplacé.',
 	'action_fichier_isole' => 'Fichier isolé : @chemin@.',
 	'action_isolement_echec' => 'Impossible d’isoler @chemin@. Consultez le journal Sentinelle.',

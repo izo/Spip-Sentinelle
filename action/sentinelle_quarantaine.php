@@ -191,13 +191,12 @@ function sentinelle_action_isoler_tout(string $racine): void {
 		}
 	}
 
-	$texte = "$faits fichier(s) isolé(s) dans le lot $lot.";
-	if ($refuses) {
-		$texte .= " $refuses chemin(s) protégé(s) laissé(s) en place — à traiter à la main.";
-	}
-	if ($echecs) {
-		$texte .= " $echecs échec(s), voir le journal « sentinelle ».";
-	}
+	$texte = _T('sentinelle:action_isoler_tout_resultat', [
+		'faits' => $faits,
+		'refuses' => $refuses,
+		'echecs' => $echecs,
+		'lot' => $lot,
+	]);
 
 	spip_log("Sentinelle : lot $lot — $faits isolé(s), $refuses protégé(s), $echecs échec(s)", 'sentinelle.' . _LOG_INFO_IMPORTANTE);
 	sentinelle_message_ecrire($echecs === 0, $texte);
