@@ -38,6 +38,7 @@
 		if (pageTexte) pageTexte.textContent = page + ' / ' + pages;
 		if (precedent) precedent.disabled = page <= 1;
 		if (suivant) suivant.disabled = page >= pages;
+		synchroniserTout();
 	}
 
 	[recherche, gravite, regle, repertoire].forEach(function (controle) {
@@ -48,13 +49,47 @@
 
 	var selection = racine.querySelector('[data-sentinelle-selection]');
 	var compteur = racine.querySelector('[data-sentinelle-selection-compte]');
+	var tout = racine.querySelector('[data-sentinelle-tout]');
+	var quickWins = racine.querySelector('[data-sentinelle-quick-wins]');
+	function casesDesLignes(lignesCibles) {
+		return lignesCibles.map(function (ligne) {
+			return ligne.querySelector('input[name="chemins[]"]');
+		}).filter(function (caseACocher) { return !!caseACocher; });
+	}
+	function lignesDeLaPage() {
+		return lignes.filter(function (ligne) { return !ligne.hidden; });
+	}
+	function synchroniserTout() {
+		if (!tout) return;
+		var cases = casesDesLignes(lignesDeLaPage());
+		var cochees = cases.filter(function (caseACocher) { return caseACocher.checked; }).length;
+		tout.disabled = cases.length === 0;
+		tout.checked = cases.length > 0 && cochees === cases.length;
+		tout.indeterminate = cochees > 0 && cochees < cases.length;
+	}
 	function compterSelection() {
 		var n = racine.querySelectorAll('input[name="chemins[]"]:checked').length;
 		if (selection) selection.hidden = n === 0;
 		if (compteur) compteur.textContent = n;
+		synchroniserTout();
 	}
 	racine.addEventListener('change', function (event) {
 		if (event.target && event.target.name === 'chemins[]') compterSelection();
+	});
+	if (tout) tout.addEventListener('change', function () {
+		casesDesLignes(lignesDeLaPage()).forEach(function (caseACocher) { caseACocher.checked = tout.checked; });
+		compterSelection();
+	});
+	if (quickWins) quickWins.addEventListener('click', function () {
+		casesDesLignes(lignes).forEach(function (caseACocher) { caseACocher.checked = false; });
+		casesDesLignes(lignes.filter(function (ligne) {
+			return ligne.getAttribute('data-gravite') === 'critique';
+		})).forEach(function (caseACocher) { caseACocher.checked = true; });
+		if (gravite) gravite.value = 'critique';
+		page = 1;
+		afficher();
+		compterSelection();
+		if (selection) selection.scrollIntoView({ block: 'nearest' });
 	});
 
 	racine.addEventListener('click', function (event) {

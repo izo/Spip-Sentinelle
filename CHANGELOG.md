@@ -1,5 +1,12 @@
 # Journal des modifications
 
+## [1.1.0] - 2026-09-08
+
+### Added
+
+- Une sélection globale par page permet de cocher rapidement tous les fichiers isolables affichés.
+- Le mode « Quick wins » prépare en un clic tous les fichiers critiques isolables, tout en excluant les chemins protégés et en conservant la confirmation avant l’action groupée.
+
 ## [1.0.2] - 2026-09-08
 
 ### Fixed

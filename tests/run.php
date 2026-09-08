@@ -197,6 +197,15 @@ verifier(
 	strpos($squelette, 'name="chemins&#91;&#93;"') !== false && strpos($squelette, 'name="chemins[]"') === false,
 	'la sélection multiple doit conserver un balisage SPIP compilable'
 );
+verifier(
+	strpos($squelette, 'data-sentinelle-quick-wins') !== false && strpos($squelette, 'data-sentinelle-tout') !== false,
+	'le tableau doit proposer la sélection de page et les quick wins critiques'
+);
+$javascript = file_get_contents(dirname(__DIR__) . '/prive/themes/spip/javascript/sentinelle.js');
+verifier(
+	strpos($javascript, "getAttribute('data-gravite') === 'critique'") !== false,
+	'les quick wins doivent se limiter aux fichiers critiques isolables'
+);
 
 supprimer_fixture($racineTests);
 if ($echecs) {
