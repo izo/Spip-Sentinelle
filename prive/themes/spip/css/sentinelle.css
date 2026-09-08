@@ -12,6 +12,35 @@
 .sentinelle :focus-visible { outline: 3px solid #1976d2; outline-offset: 3px; }
 .sentinelle .btn { min-height: 44px; }
 
+.sentinelle-titre {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+.sentinelle-titre .grostitre { margin-bottom: 0; }
+.sentinelle .sentinelle-mode-attaque {
+	min-height: 40px;
+	padding: .4rem .75rem;
+	color: var(--sentinelle-danger);
+	background: #fff;
+	border: 1px solid #c97872;
+	box-shadow: none;
+	font-weight: 700;
+}
+.sentinelle .sentinelle-mode-attaque::before {
+	display: inline-block;
+	width: .55rem;
+	height: .55rem;
+	margin-right: .5rem;
+	background: var(--sentinelle-danger);
+	border-radius: 50%;
+	content: "";
+}
+.sentinelle .sentinelle-mode-attaque:hover { color: #fff; background: var(--sentinelle-danger); border-color: var(--sentinelle-danger); }
+.sentinelle .sentinelle-mode-attaque:hover::before { background: #fff; }
+.sentinelle-mode-normal { color: var(--sentinelle-muted); font-weight: 600; }
+
 .sentinelle-crise {
 	margin: 1rem 0 1.5rem;
 	background: #fff7f6;
@@ -246,6 +275,8 @@
 .sentinelle-pagination button { min-width: 44px; min-height: 44px; }
 
 @media (max-width: 760px) {
+	.sentinelle-titre { align-items: stretch; flex-direction: column; }
+	.sentinelle .sentinelle-mode-attaque { width: 100%; }
 	.sentinelle-crise__entete { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.15rem; }
 	.sentinelle-crise__commande { padding: 1rem 0 0; border-top: 1px solid #e7b9b5; border-left: 0; }
 	.sentinelle-crise__parcours { grid-template-columns: 1fr; }

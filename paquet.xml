@@ -1,7 +1,7 @@
 <paquet
 	prefix="sentinelle"
 	categorie="outil"
-	version="1.2.0"
+	version="1.2.1"
 	etat="stable"
 	compatibilite="[4.2.0;4.*]"
 	documentation="https://github.com/izo/Spip-Sentinelle"

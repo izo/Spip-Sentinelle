@@ -1,5 +1,12 @@
 # Journal des modifications
 
+## [1.2.1] - 2026-09-08
+
+### Changed
+
+- Le mode « Sous attaque » est désormais activable manuellement depuis le titre, même sans alerte critique.
+- En l’absence de critique, il commence par une action unique de scan immédiat ; après détection, il bascule automatiquement sur la contention.
+
 ## [1.2.0] - 2026-09-08
 
 ### Added
