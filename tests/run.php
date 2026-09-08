@@ -204,8 +204,9 @@ verifier(
 verifier(
 	strpos($squelette, 'data-sentinelle-mode-attaque') !== false
 		&& strpos($squelette, 'sentinelle_quarantaine,isoler-tout:') !== false
+		&& strpos($squelette, 'mode=attaque') !== false
 		&& strpos($squelette, 'sentinelle-analyse') !== false,
-	'le mode sous attaque doit proposer la contention immédiate et reléguer l’analyse détaillée'
+	'le mode sous attaque doit être activable, proposer la contention et reléguer l’analyse détaillée'
 );
 $javascript = file_get_contents(dirname(__DIR__) . '/prive/themes/spip/javascript/sentinelle.js');
 verifier(

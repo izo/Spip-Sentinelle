@@ -191,6 +191,7 @@ function sentinelle_vue_resume($rien = ''): array {
 		'notifications_attente' => count((array) sentinelle_etat_lire('notifications.json', [])),
 		'quarantaine_nb' => $quarantaine_nb,
 		'etape' => $etape,
+		'mode_attaque' => $critique > 0 || _request('mode') === 'attaque',
 	];
 }
 
