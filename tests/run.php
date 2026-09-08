@@ -184,6 +184,13 @@ $squelette = file_get_contents(dirname(__DIR__) . '/prive/squelettes/contenu/sen
 preg_match_all('/<:sentinelle:([a-z0-9_]+)/', $squelette, $cles);
 verifier(array_diff(array_unique($cles[1]), array_keys($fr)) === [], 'toutes les chaînes du squelette doivent exister');
 
+// Le bilan ne doit pas laisser sa colonne secondaire écraser le résumé.
+$css = file_get_contents(dirname(__DIR__) . '/prive/themes/spip/css/sentinelle.css');
+verifier(
+	(bool) preg_match('/\.sentinelle-etat\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,/s', $css),
+	'le bilan doit adapter ses colonnes à la largeur de la carte'
+);
+
 supprimer_fixture($racineTests);
 if ($echecs) {
 	fwrite(STDERR, "ÉCHECS (" . count($echecs) . "/$tests)\n- " . implode("\n- ", $echecs) . "\n");
