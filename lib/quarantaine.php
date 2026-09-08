@@ -160,6 +160,9 @@ function sentinelle_quarantaine_intouchables(): array {
 	return [
 		'#^\.htaccess$#', '#^index\.php$#', '#^spip\.php$#', '#^config/#',
 		'#^ecrire/#', '#^prive/#', '#^squelettes-dist/#', '#^plugins-dist/#',
+		// Sentinelle ne doit jamais pouvoir neutraliser son propre moteur.
+		// Le contrôle dynamique ci-dessous couvre aussi un dossier renommé.
+		'#^plugins/(?:auto/)?(?:spip-)?sentinelle(?:/|$)#i',
 		// Le répertoire entier est protégé, mais un fichier PHP précisément
 		// signalé sous IMG/ doit pouvoir être isolé sans déplacer les médias.
 		'#^IMG/$#', '#^local/$#',
@@ -216,13 +219,28 @@ function sentinelle_arbre_sans_symlink(string $chemin): bool {
 }
 
 /** @return string|true */
-function sentinelle_quarantaine_autorisee(string $rel) {
+function sentinelle_quarantaine_autorisee(string $rel, string $racine = '') {
 	if (!sentinelle_chemin_relatif_valide($rel)) {
 		return 'Chemin invalide';
 	}
 	foreach (sentinelle_quarantaine_intouchables() as $motif) {
 		if (preg_match($motif, $rel)) {
 			return 'Chemin protégé — décision humaine requise (' . $rel . ')';
+		}
+	}
+	if ($racine !== '') {
+		$racine_reelle = realpath($racine);
+		$plugin_reel = realpath(dirname(__DIR__));
+		if ($racine_reelle !== false && $plugin_reel !== false) {
+			$racine_reelle = rtrim(str_replace('\\', '/', $racine_reelle), '/');
+			$plugin_reel = rtrim(str_replace('\\', '/', $plugin_reel), '/');
+			if (sentinelle_chemin_dans($plugin_reel, $racine_reelle)) {
+				$plugin_rel = ltrim(substr($plugin_reel, strlen($racine_reelle)), '/');
+				$cible = rtrim($rel, '/');
+				if ($cible === $plugin_rel || strpos($cible, $plugin_rel . '/') === 0) {
+					return 'Plugin Sentinelle protégé — auto-isolation interdite (' . $rel . ')';
+				}
+			}
 		}
 	}
 	return true;
@@ -262,7 +280,7 @@ function sentinelle_quarantaine_deplacer(string $racine, string $rel, string $lo
 		return ['ok' => false, 'message' => 'Racine du site introuvable.'];
 	}
 	$racine_reelle = rtrim(str_replace('\\', '/', $racine_reelle), '/');
-	$permis = sentinelle_quarantaine_autorisee($rel);
+	$permis = sentinelle_quarantaine_autorisee($rel, $racine_reelle);
 	if ($permis !== true) {
 		return ['ok' => false, 'message' => $permis];
 	}
@@ -353,8 +371,10 @@ function sentinelle_quarantaine_restaurer(string $racine, string $rel, string $l
 			$entree = $candidate;
 		}
 	}
-	if (!is_array($entree) || !sentinelle_quarantaine_entree_valide($entree)
-		|| sentinelle_quarantaine_autorisee($rel) !== true) {
+	// Une restauration est confinée par le journal signé par Sentinelle et doit
+	// rester possible même pour un chemin désormais protégé (notamment après
+	// récupération d'une ancienne auto-isolation du plugin).
+	if (!is_array($entree) || !sentinelle_quarantaine_entree_valide($entree)) {
 		return ['ok' => false, 'message' => 'Aucune mise en quarantaine active pour ' . $rel];
 	}
 	$etat_dir = sentinelle_repertoire_etat($racine_reelle);

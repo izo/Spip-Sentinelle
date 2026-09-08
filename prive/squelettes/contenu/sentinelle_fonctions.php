@@ -146,7 +146,7 @@ function sentinelle_vue_resume($rien = ''): array {
 		if ($chemin === '' || ($finding['gravite'] ?? '') !== 'critique') {
 			continue;
 		}
-		if (sentinelle_quarantaine_autorisee($chemin) === true) {
+		if (sentinelle_quarantaine_autorisee($chemin, sentinelle_racine()) === true) {
 			$critiques_isolables[$chemin] = true;
 		} else {
 			$critiques_proteges[$chemin] = true;
@@ -222,6 +222,7 @@ function sentinelle_vue_posture($rien = ''): array {
 function sentinelle_vue_fichiers($rien = ''): array {
 	include_spip('inc/sentinelle');
 	sentinelle_charger_moteur();
+	$racine = sentinelle_racine();
 	$par_chemin = [];
 	foreach (sentinelle_findings_courants() as $finding) {
 		$rel = (string) ($finding['chemin'] ?? '');
@@ -229,7 +230,7 @@ function sentinelle_vue_fichiers($rien = ''): array {
 			continue;
 		}
 		if (!isset($par_chemin[$rel])) {
-			$permis = sentinelle_quarantaine_autorisee($rel);
+			$permis = sentinelle_quarantaine_autorisee($rel, $racine);
 			$par_chemin[$rel] = [
 				'chemin' => spip_htmlspecialchars($rel),
 				'chemin_brut' => spip_htmlspecialchars($rel),
