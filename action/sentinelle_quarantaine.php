@@ -104,7 +104,7 @@ function sentinelle_action_isoler_selection(string $racine, array $chemins): voi
 	$refuses = 0;
 	$echecs = 0;
 	foreach (array_keys($selection) as $rel) {
-		if (sentinelle_quarantaine_autorisee($rel) !== true) {
+		if (sentinelle_quarantaine_autorisee($rel, $racine) !== true) {
 			$refuses++;
 			continue;
 		}
@@ -176,7 +176,7 @@ function sentinelle_action_isoler_tout(string $racine): void {
 	}
 
 	foreach (array_keys($critiques) as $rel) {
-		if (sentinelle_quarantaine_autorisee($rel) !== true) {
+		if (sentinelle_quarantaine_autorisee($rel, $racine) !== true) {
 			$refuses++;
 			continue;
 		}

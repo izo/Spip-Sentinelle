@@ -119,6 +119,13 @@ verifier(!$refusHash['ok'], 'une charge modifiée doit être refusée à la rest
 // Traversées et composants symboliques sont refusés.
 verifier(sentinelle_quarantaine_autorisee('../secret.php') !== true, 'la traversée doit être refusée');
 verifier(sentinelle_quarantaine_autorisee('/etc/passwd') !== true, 'un chemin absolu doit être refusé');
+verifier(sentinelle_quarantaine_autorisee('plugins/spip-sentinelle/lib/scanner.php') !== true, 'Sentinelle doit refuser sa propre auto-isolation');
+$racineDepot = dirname(realpath(dirname(__DIR__)));
+$cheminDepot = basename(realpath(dirname(__DIR__))) . '/lib/scanner.php';
+verifier(sentinelle_quarantaine_autorisee($cheminDepot, $racineDepot) !== true, 'le dossier réel du plugin doit rester protégé même renommé');
+ecrire_fixture($site, 'plugins/spip-sentinelle/lib/scanner.php', '<?php echo 1;');
+$refusSentinelle = sentinelle_quarantaine_deplacer($site, 'plugins/spip-sentinelle/lib/scanner.php', 'test-auto-isolation');
+verifier(!$refusSentinelle['ok'] && is_file($site . '/plugins/spip-sentinelle/lib/scanner.php'), 'la quarantaine ne doit jamais déplacer son propre moteur');
 
 // JSON corrompu conservé, puis remplacé atomiquement par une valeur valide.
 $dirEtat = sentinelle_repertoire_etat($site);

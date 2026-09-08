@@ -1,5 +1,12 @@
 # Journal des modifications
 
+## [1.2.2] - 2026-09-08
+
+### Fixed
+
+- Le répertoire du plugin Sentinelle est désormais intouchable, y compris lorsqu'il a été renommé : une isolation groupée ne peut plus neutraliser son propre moteur.
+- La restauration d'une ancienne auto-isolation reste possible depuis le journal de quarantaine validé.
+
 ## [1.2.1] - 2026-09-08
 
 ### Changed
