@@ -191,6 +191,13 @@ verifier(
 	'le bilan doit adapter ses colonnes à la largeur de la carte'
 );
 
+// Les crochets du nom de champ ne doivent pas fermer prématurément le
+// bloc conditionnel SPIP qui entoure la case à cocher.
+verifier(
+	str_contains($squelette, 'name="chemins&#91;&#93;"') && !str_contains($squelette, 'name="chemins[]"'),
+	'la sélection multiple doit conserver un balisage SPIP compilable'
+);
+
 supprimer_fixture($racineTests);
 if ($echecs) {
 	fwrite(STDERR, "ÉCHECS (" . count($echecs) . "/$tests)\n- " . implode("\n- ", $echecs) . "\n");
