@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: Lint PHP
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: Security and recovery tests
+        run: php tests/run.php
+      - name: CLI smoke test
+        run: php sentinelle-cli.php scan tests --json > /tmp/sentinelle.json || test $? -eq 1
+      - name: Validate package XML
+        run: php -r '$x=simplexml_load_file("paquet.xml"); if (!$x) exit(1);'
+      - name: Compile the SPIP skeleton
+        if: matrix.php == '8.2'
+        run: |
+          composer create-project spip/spip /tmp/spip "4.4.*" --repository-url=https://get.spip.net/composer --no-interaction --no-progress
+          php tests/compile-skeleton.php /tmp/spip

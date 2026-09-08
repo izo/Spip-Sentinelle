@@ -1,0 +1,172 @@
+<?php
+
+/**
+ * Sentinelle — chaînes de langue françaises.
+ *
+ * @plugin Sentinelle
+ * @license GNU/GPL
+ * @package SPIP\Sentinelle\Lang
+ */
+
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
+
+$GLOBALS[$GLOBALS['idx_lang']] = [
+
+	// Titres
+	'titre_sentinelle' => 'Sentinelle',
+	'titre_posture' => 'Posture du site',
+	'titre_fichiers' => 'Fichiers signalés',
+	'titre_quarantaine' => 'Fichiers isolés',
+	'etat_a_jour' => 'Surveillance à jour',
+	'etat_en_cours' => 'Scan en cours',
+	'etat_perime' => 'Résultat périmé',
+	'etat_echec' => 'Cycle échoué',
+
+	// Résumé
+	'jamais_scanne' => 'Aucun scan effectué pour l’instant. Lancez-en un, ou attendez le prochain passage du cron.',
+	'bilan' => '@critique@ critique · @haut@ haut · @moyen@ moyen',
+	'bilan_fichiers' => '@critique@ fichier(s) critique(s) · @haut@ haut(s) · @moyen@ moyen(s)',
+	'mesure_fichiers' => 'fichiers concernés',
+	'mesure_regles' => 'règles déclenchées',
+	'mesure_groupes' => 'empreintes distinctes',
+	'dernier_scan' => 'Dernier scan le @date@ — @nb@ fichiers analysés en @duree@ s.',
+	'dernier_cycle_reussi' => 'Dernier cycle réussi : @date@.',
+	'scan_perime' => 'Le dernier résultat date du @date@. Lancez un scan ou vérifiez le cron.',
+	'notifications_attente' => '@nb@ notification(s) en attente d’envoi ; le prochain cycle réessaiera.',
+	'cron_actif' => 'Surveillance automatique toutes les @heures@ heures.',
+	'cron_inactif' => 'Surveillance automatique désactivée (méta <code>sentinelle_intervalle</code> à 0).',
+	'cycle_en_cours' => 'Scan fractionné en cours : @position@ / @total@ fichiers. Il reprendra au prochain passage du cron.',
+	'cycle_phase' => 'Phase : @phase@',
+	'phase_decouverte' => 'découverte des fichiers',
+	'phase_analyse' => 'analyse',
+	'phase_coherence_reference' => 'vérification des fichiers de référence',
+	'phase_coherence_ajouts' => 'recherche des ajouts',
+	'phase_finalisation' => 'finalisation',
+	'phase_termine' => 'terminé',
+	'parcours_label' => 'Parcours de sécurisation',
+	'etape_revue' => 'Revue',
+	'etape_nettoyage' => 'Isolement',
+	'etape_verification' => 'Vérification',
+	'etape_baseline' => 'Empreinte',
+	'etape_surveillance' => 'Surveillance',
+
+	// Empreinte de référence
+	'empreinte_absente' => 'Aucune empreinte de référence. Seuls les indicateurs déjà catalogués sont détectés — un webshell inédit passe inaperçu.',
+	'empreinte_posee' => 'Empreinte de référence : @nb@ fichiers, posée le @date@.',
+	'empreinte_sale' => 'L’empreinte a été posée alors que @nb@ alerte(s) critique(s) étaient encore ouvertes : ces fichiers font partie de la référence et ne seront plus signalés par la vérification de cohérence. Reposez-la une fois le nettoyage terminé.',
+
+	// Boutons
+	'bouton_scanner' => 'Lancer un scan complet',
+	'bouton_poser_empreinte' => 'Poser l’empreinte de référence',
+	'bouton_reposer_empreinte' => 'Reposer l’empreinte',
+	'bouton_oublier_empreinte' => 'Oublier l’empreinte',
+	'bouton_isoler_tout' => 'Isoler tous les fichiers critiques',
+	'bouton_isoler' => 'Isoler',
+	'bouton_restaurer' => 'Restaurer',
+	'bouton_empreinte_bloquee' => 'Empreinte bloquée pendant les alertes critiques',
+	'bouton_forcer_empreinte' => 'Forcer la pose de l’empreinte',
+	'bouton_isoler_selection' => 'Isoler la sélection',
+	'bouton_copier' => 'Copier',
+	'derogation_titre' => 'Dérogation pour une situation vérifiée',
+	'derogation_explication' => 'Forcer l’empreinte enregistre les fichiers critiques comme référence. Utilisez cette dérogation uniquement après une vérification humaine documentée.',
+
+	// Confirmations
+	'confirm_reposer_empreinte' => 'L’état actuel du site deviendra la nouvelle référence. Tout ce qui est présent maintenant cessera d’être signalé comme un ajout. Continuer ?',
+	'confirm_oublier_empreinte' => 'La vérification de cohérence sera désactivée jusqu’à la pose d’une nouvelle empreinte. Continuer ?',
+	'confirm_isoler_tout' => 'Tous les fichiers de gravité critique vont être déplacés hors du site, dans un même lot restaurable. Les chemins protégés (ecrire/, config/, .htaccess de la racine…) seront laissés en place. Continuer ?',
+	'confirm_isoler' => 'Ce fichier va être déplacé hors du site. L’opération est réversible depuis cette page. Continuer ?',
+	'confirm_restaurer' => 'Ce fichier va être remis à son emplacement d’origine, avec ses permissions initiales. S’il est malveillant, il redeviendra exécutable. Continuer ?',
+	'confirm_forcer_empreinte' => 'Des alertes critiques sont encore ouvertes. Leur état actuel sera considéré comme légitime. Confirmez-vous cette dérogation ?',
+	'confirm_isoler_selection' => 'Les fichiers cochés vont être déplacés dans la quarantaine privée hors du site. Continuer ?',
+
+	// Colonnes
+	'colonne_gravite' => 'Gravité',
+	'colonne_fichier' => 'Fichier',
+	'colonne_motifs' => 'Motifs',
+	'colonne_action' => 'Action',
+	'colonne_lot' => 'Lot',
+	'colonne_selection' => 'Sélection',
+	'selectionner_fichier' => 'Sélectionner @chemin@',
+	'selection_compte' => 'fichier(s) sélectionné(s)',
+	'gravite_critique' => 'critique',
+	'gravite_haut' => 'haut',
+	'gravite_moyen' => 'moyen',
+	'gravite_info' => 'information',
+	'nb_motifs' => '@nb@ motifs',
+	'filtres_label' => 'Filtres des fichiers signalés',
+	'filtre_recherche' => 'Rechercher',
+	'filtre_recherche_placeholder' => 'Chemin ou règle…',
+	'filtre_regle' => 'Règle',
+	'filtre_repertoire' => 'Répertoire',
+	'filtre_toutes' => 'Toutes',
+	'filtre_tous_repertoires' => 'Tous les répertoires',
+	'filtre_repertoire_placeholder' => 'Ex. IMG/ ou plugins/',
+	'chemin_protege' => 'Chemin protégé : une décision humaine est requise.',
+	'motif_isolation' => 'Motif enregistré lors de l’isolement.',
+	'resultats_visibles' => 'résultats visibles',
+	'pagination_label' => 'Pagination des signalements',
+	'precedent' => 'Précédent',
+	'suivant' => 'Suivant',
+	'jamais' => 'jamais',
+	'unite_octet' => 'o',
+	'unite_ko' => 'ko',
+	'unite_mo' => 'Mo',
+
+	// Libellés de repli du moteur (utilisés surtout par la traduction anglaise)
+	'finding_repertoire_interdit' => 'Arborescence WordPress sur une installation SPIP',
+	'finding_hash' => 'Empreinte malveillante cataloguée',
+	'finding_nom' => 'Nom de fichier malveillant catalogué',
+	'finding_nom_generique' => 'Nom générique utilisé par un outil malveillant',
+	'finding_nom_motif' => 'Nom de fichier inhabituel',
+	'finding_taille' => 'Fichier trop volumineux pour être analysé',
+	'finding_marqueur' => 'Marqueur de contenu malveillant connu',
+	'finding_motif' => 'Motif de contenu malveillant connu',
+	'finding_php_donnees' => 'Fichier PHP dans un répertoire de données',
+	'finding_htaccess' => 'Directive .htaccess inhabituelle',
+	'finding_heuristique' => 'Combinaison d’indices suspects',
+	'finding_baseline_ajout' => 'Fichier absent de l’empreinte de référence',
+	'finding_baseline_modifie' => 'Fichier modifié depuis l’empreinte de référence',
+	'finding_baseline_disparu' => 'Fichier de référence disparu',
+	'finding_couverture' => 'Couverture du scan incomplète',
+	'finding_posture' => 'Configuration de sécurité à vérifier',
+	'finding_inconnu' => 'Signalement du moteur',
+	'proof_repertoire_interdit' => 'SPIP ne crée pas ce répertoire.',
+	'proof_hash' => 'Correspondance exacte avec le catalogue MD5.',
+	'proof_nom' => 'Nom : @nom@.',
+	'proof_nom_generique' => 'Indice à confirmer avec le contenu ou le hash.',
+	'proof_nom_motif' => 'Nom : @nom@.',
+	'proof_taille' => 'Vérification manuelle requise.',
+	'proof_signature' => 'Signature de contenu cataloguée.',
+	'proof_php_donnees' => 'Aucun PHP légitime n’est attendu à cet emplacement.',
+	'proof_htaccess' => 'Origine non établie ; la règle peut aussi être défensive.',
+	'proof_heuristique' => 'Plusieurs indicateurs pondérés dépassent le seuil.',
+	'proof_baseline' => 'Différence avec la référence enregistrée.',
+	'proof_couverture' => 'Vérifiez les permissions et relancez le scan.',
+	'proof_posture' => 'Consultez le détail technique et corrigez la configuration.',
+	'proof_inconnu' => 'Vérification humaine requise.',
+
+	// Notes
+	'ne_pas_ouvrir' => 'N’ouvrez aucun de ces chemins dans un navigateur et ne les exécutez pas : plusieurs de ces fichiers réagissent à une simple requête GET.',
+	'aucun_fichier' => 'Aucun fichier signalé par le dernier scan.',
+	'note_quarantaine' => 'Les fichiers isolés sont conservés hors de l’arborescence servie, en lecture seule. Ils apparaîtront comme « disparus » dans la vérification de cohérence tant que l’empreinte n’aura pas été reposée.',
+	'action_autorisation_refusee' => 'Autorisation refusée.',
+	'action_scan_termine' => 'Scan terminé en @duree@ s — @critique@ critique · @haut@ haut · @moyen@ moyen.',
+	'action_scan_sans_baseline' => 'Aucun IOC connu : ce n’est pas une preuve d’absence de compromission tant que l’empreinte n’est pas posée.',
+	'action_baseline_effacee' => 'Empreinte effacée. La vérification de cohérence est inactive.',
+	'action_baseline_bloquee' => 'Empreinte refusée : traitez les alertes critiques ou utilisez la dérogation après vérification humaine.',
+	'action_baseline_vide' => 'Empreinte vide : aucun fichier lisible. Vérifiez les permissions de la racine.',
+	'action_baseline_ecriture' => 'Échec d’écriture de l’empreinte dans le stockage privé. Vérifiez ses permissions.',
+	'action_baseline_posee' => 'Empreinte posée sur @nb@ fichiers.',
+	'action_baseline_forcee' => 'Dérogation enregistrée avec @nb@ alerte(s) critique(s) encore ouvertes.',
+	'action_operation_inconnue' => 'Opération inconnue.',
+	'action_selection_vide' => 'Aucun fichier signalé valide n’a été sélectionné.',
+	'action_selection_resultat' => '@faits@ fichier(s) isolé(s) dans le lot @lot@ · @refuses@ protégé(s) · @echecs@ échec(s).',
+	'action_chemin_non_signale' => 'Ce chemin ne figure pas dans le dernier scan ; rien n’a été déplacé.',
+	'action_fichier_isole' => 'Fichier isolé : @chemin@.',
+	'action_isolement_echec' => 'Impossible d’isoler @chemin@. Consultez le journal Sentinelle.',
+	'action_fichier_restaure' => 'Fichier restauré : @chemin@.',
+	'action_restauration_echec' => 'Impossible de restaurer @chemin@. Son état n’a pas été modifié.',
+
+];

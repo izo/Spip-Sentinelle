@@ -1,0 +1,53 @@
+<paquet
+	prefix="sentinelle"
+	categorie="outil"
+	version="1.0.1"
+	etat="stable"
+	compatibilite="[4.2.0;4.*]"
+	documentation="https://github.com/izo/Spip-Sentinelle"
+	logo="logo.png"
+>
+
+	<nom>Sentinelle</nom>
+	<!-- Détection, mise en quarantaine et vérification de cohérence après compromission -->
+
+	<auteur>Mathieu Drouet</auteur>
+	<licence>GNU/GPL</licence>
+	<necessite nom="PHP" compatibilite="[7.4.0;]" />
+
+	<pipeline nom="taches_generales_cron" inclure="sentinelle_pipelines.php" />
+	<pipeline nom="autoriser" inclure="sentinelle_autoriser.php" />
+
+	<!--
+		Entrée dans « Maintenance du site » : c'est là que vivent déjà le vidage
+		du cache, le suivi des tâches et l'admin technique. Le nom exact du menu
+		parent dans le core est `menu_administration` — il n'existe pas de
+		`menu_maintenance`, et un parent inconnu fait disparaître l'entrée sans
+		la moindre erreur.
+
+		`icone` est résolu par `find_in_theme()` (ecrire/inc/bandeau.php), qui
+		cherche `prive/themes/<theme>/images/<nom>` dans tout le chemin SPIP —
+		donc dans ce plugin aussi. `images/cadenas-16.png` ne désignait aucun
+		fichier d'ici : ça tombait sur `cadenas-xx.svg` du core, d'où le cadenas
+		générique dans le bandeau.
+
+		Une entrée de sous-menu n'affiche pas de balise `<img>` : c'est
+		`bando_images_background()` (ecrire/inc/filtres.php) qui émet
+		`.bando2_sentinelle {background-image:url(...)}` dans `bando.css.html`.
+		Ce squelette est mis en cache — après toute modification de l'icône, il
+		faut vider le cache de SPIP pour la voir changer.
+
+		Le fichier fait 48 px alors qu'il se nomme `-16` : le suffixe SPIP
+		désigne la taille d'affichage, pas celle du fichier. `bando.css` force
+		`background-size: 16px` (20 px sur grand écran), donc les 48 px servent
+		uniquement à rester net en écran haute densité. Le core s'en dispense en
+		livrant des `-xx.svg` ; ici la source est un logo bitmap.
+	-->
+	<menu
+		nom="sentinelle"
+		titre="sentinelle:titre_sentinelle"
+		parent="menu_administration"
+		icone="images/sentinelle-16.png"
+		action="sentinelle" />
+
+</paquet>
