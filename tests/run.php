@@ -194,7 +194,7 @@ verifier(
 // Les crochets du nom de champ ne doivent pas fermer prématurément le
 // bloc conditionnel SPIP qui entoure la case à cocher.
 verifier(
-	str_contains($squelette, 'name="chemins&#91;&#93;"') && !str_contains($squelette, 'name="chemins[]"'),
+	strpos($squelette, 'name="chemins&#91;&#93;"') !== false && strpos($squelette, 'name="chemins[]"') === false,
 	'la sélection multiple doit conserver un balisage SPIP compilable'
 );
 
