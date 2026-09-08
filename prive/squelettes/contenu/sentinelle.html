@@ -141,7 +141,7 @@
 			<tbody>
 			<BOUCLE_fichiers(DATA){source table, #GET{fichiers}}>
 			<tr data-sentinelle-ligne data-search="#VALEUR{recherche}" data-gravite="#VALEUR{gravite}" data-regles="#VALEUR{regles_filtre}" data-repertoire="#VALEUR{repertoire}">
-				<td>[(#VALEUR{isolable}|oui)<input type="checkbox" name="chemins[]" value="#VALEUR{chemin_brut}" aria-label="<:sentinelle:selectionner_fichier{chemin=#VALEUR{chemin_brut}}:>" />]</td>
+				<td>[(#VALEUR{isolable}|oui)<input type="checkbox" name="chemins&#91;&#93;" value="#VALEUR{chemin_brut}" aria-label="<:sentinelle:selectionner_fichier{chemin=#VALEUR{chemin_brut}}:>" />]</td>
 				<td data-label="<:sentinelle:colonne_gravite:>"><span class="sentinelle-badge sentinelle-badge-#VALEUR{gravite}">#VALEUR*{gravite_libelle}</span></td>
 				<td data-label="<:sentinelle:colonne_fichier:>">
 					<div class="sentinelle-chemin-ligne"><code class="sentinelle-chemin" title="#VALEUR{chemin}">#VALEUR*{chemin}</code><button type="button" class="btn btn_mini sentinelle-copier" data-copy="#VALEUR{chemin}" aria-pressed="false"><:sentinelle:bouton_copier:></button></div>

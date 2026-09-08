@@ -14,7 +14,7 @@
 
 .sentinelle-etat {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 	gap: 1.25rem 2rem;
 	align-items: start;
 	padding: 1.25rem;
@@ -99,12 +99,13 @@
 
 .sentinelle-table-wrap { overflow-x: auto; }
 .sentinelle-table { width: 100%; table-layout: fixed; }
-.sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(1) { width: 3rem; }
+.sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(1) { width: 6rem; text-align: center; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(2) { width: 7.5rem; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(3) { width: 34%; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(5) { width: 8rem; }
 .sentinelle-table--quarantaine th:last-child { width: 8rem; }
 .sentinelle-table td { vertical-align: top; padding-block: .8rem; }
+.sentinelle-table:not(.sentinelle-table--quarantaine) td:first-child { text-align: center; }
 
 .sentinelle-chemin-ligne { display: flex; gap: .4rem; align-items: start; min-width: 0; }
 .sentinelle-chemin {

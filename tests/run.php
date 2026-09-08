@@ -184,6 +184,20 @@ $squelette = file_get_contents(dirname(__DIR__) . '/prive/squelettes/contenu/sen
 preg_match_all('/<:sentinelle:([a-z0-9_]+)/', $squelette, $cles);
 verifier(array_diff(array_unique($cles[1]), array_keys($fr)) === [], 'toutes les chaînes du squelette doivent exister');
 
+// Le bilan ne doit pas laisser sa colonne secondaire écraser le résumé.
+$css = file_get_contents(dirname(__DIR__) . '/prive/themes/spip/css/sentinelle.css');
+verifier(
+	(bool) preg_match('/\.sentinelle-etat\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,/s', $css),
+	'le bilan doit adapter ses colonnes à la largeur de la carte'
+);
+
+// Les crochets du nom de champ ne doivent pas fermer prématurément le
+// bloc conditionnel SPIP qui entoure la case à cocher.
+verifier(
+	strpos($squelette, 'name="chemins&#91;&#93;"') !== false && strpos($squelette, 'name="chemins[]"') === false,
+	'la sélection multiple doit conserver un balisage SPIP compilable'
+);
+
 supprimer_fixture($racineTests);
 if ($echecs) {
 	fwrite(STDERR, "ÉCHECS (" . count($echecs) . "/$tests)\n- " . implode("\n- ", $echecs) . "\n");
