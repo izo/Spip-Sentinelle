@@ -95,20 +95,48 @@
 .sentinelle-filtres label { display: grid; gap: .25rem; font-weight: 600; }
 .sentinelle-filtres input,
 .sentinelle-filtres select { min-height: 44px; width: 100%; }
-.sentinelle-resultats { color: var(--sentinelle-muted); grid-column: 1 / -1; margin: 0; }
-.sentinelle-quick-wins { grid-column: 1 / -1; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
-.sentinelle-quick-wins span { color: var(--sentinelle-muted); font-size: .875rem; }
+.sentinelle-filtres__footer {
+	display: flex;
+	grid-column: 1 / -1;
+	align-items: center;
+	justify-content: space-between;
+	gap: .75rem;
+	padding-top: .75rem;
+	border-top: 1px solid var(--sentinelle-line);
+}
+.sentinelle-resultats { color: var(--sentinelle-muted); margin: 0; font-variant-numeric: tabular-nums; }
+.sentinelle .sentinelle-quick-wins {
+	min-height: 38px;
+	padding: .35rem .75rem;
+	color: var(--sentinelle-danger);
+	background: #fff;
+	border: 1px solid #d9a5a5;
+	box-shadow: none;
+}
+.sentinelle .sentinelle-quick-wins::before {
+	display: inline-block;
+	width: .5rem;
+	height: .5rem;
+	margin-right: .45rem;
+	background: var(--sentinelle-danger);
+	border-radius: 50%;
+	content: "";
+}
+.sentinelle .sentinelle-quick-wins:hover,
+.sentinelle .sentinelle-quick-wins:focus-visible { color: #fff; background: var(--sentinelle-danger); border-color: var(--sentinelle-danger); }
+.sentinelle .sentinelle-quick-wins:hover::before,
+.sentinelle .sentinelle-quick-wins:focus-visible::before { background: #fff; }
 
 .sentinelle-table-wrap { overflow-x: auto; }
 .sentinelle-table { width: 100%; table-layout: fixed; }
-.sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(1) { width: 6rem; text-align: center; }
+.sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(1) { width: 3.5rem; text-align: center; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(2) { width: 7.5rem; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(3) { width: 34%; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) th:nth-child(5) { width: 8rem; }
 .sentinelle-table--quarantaine th:last-child { width: 8rem; }
 .sentinelle-table td { vertical-align: top; padding-block: .8rem; }
 .sentinelle-table:not(.sentinelle-table--quarantaine) td:first-child { text-align: center; }
-.sentinelle-tout { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; cursor: pointer; }
+.sentinelle-tout { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 
 .sentinelle-chemin-ligne { display: flex; gap: .4rem; align-items: start; min-width: 0; }
 .sentinelle-chemin {
@@ -147,6 +175,8 @@
 	.sentinelle-etat { grid-template-columns: 1fr; }
 	.sentinelle-actions__danger { margin-left: 0; }
 	.sentinelle-filtres { grid-template-columns: 1fr; }
+	.sentinelle-filtres__footer { align-items: stretch; flex-direction: column; }
+	.sentinelle .sentinelle-quick-wins { width: 100%; }
 	.sentinelle-table-wrap { overflow: visible; }
 	.sentinelle-table,
 	.sentinelle-table tbody { display: block; }

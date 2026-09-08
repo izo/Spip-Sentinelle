@@ -130,10 +130,10 @@
 			<label><:sentinelle:colonne_gravite:><select data-sentinelle-gravite><option value=""><:sentinelle:filtre_toutes:></option><option value="critique"><:sentinelle:gravite_critique:></option><option value="haut"><:sentinelle:gravite_haut:></option><option value="moyen"><:sentinelle:gravite_moyen:></option><option value="info"><:sentinelle:gravite_info:></option></select></label>
 			<label><:sentinelle:filtre_regle:><select data-sentinelle-regle><option value=""><:sentinelle:filtre_toutes:></option><option value="hash">hash</option><option value="nom">nom</option><option value="nom_motif">nom_motif</option><option value="php_donnees">php_donnees</option><option value="htaccess">htaccess</option><option value="baseline_ajout">baseline_ajout</option><option value="baseline_modifie">baseline_modifie</option><option value="couverture">couverture</option></select></label>
 			<label><:sentinelle:filtre_repertoire:><input type="search" data-sentinelle-repertoire placeholder="<:sentinelle:filtre_repertoire_placeholder:>" /></label>
-			<p class="sentinelle-resultats"><span data-sentinelle-resultats></span> <:sentinelle:resultats_visibles:></p>
-			<div class="sentinelle-quick-wins">
-				<button type="button" class="btn btn_secondaire" data-sentinelle-quick-wins><:sentinelle:bouton_quick_wins:></button>
-				<span><:sentinelle:quick_wins_aide:></span>
+			<div class="sentinelle-filtres__footer">
+				<p class="sentinelle-resultats"><span data-sentinelle-resultats></span> <:sentinelle:resultats_visibles:></p>
+				<button type="button" class="btn btn_mini sentinelle-quick-wins" data-sentinelle-quick-wins aria-describedby="sentinelle-quick-wins-aide"><:sentinelle:bouton_quick_wins:></button>
+				<span class="visually-hidden" id="sentinelle-quick-wins-aide"><:sentinelle:quick_wins_aide:></span>
 			</div>
 		</div>
 
@@ -141,7 +141,7 @@
 		<div class="sentinelle-table-wrap">
 		<table class="spip liste sentinelle-table">
 			<caption class="visually-hidden"><:sentinelle:titre_fichiers:></caption>
-			<thead><tr class="first_ligne"><th scope="col"><label class="sentinelle-tout"><input type="checkbox" data-sentinelle-tout aria-label="<:sentinelle:selectionner_page:>" /><span><:sentinelle:colonne_selection:></span></label></th><th scope="col"><:sentinelle:colonne_gravite:></th><th scope="col"><:sentinelle:colonne_fichier:></th><th scope="col"><:sentinelle:colonne_motifs:></th><th scope="col"><:sentinelle:colonne_action:></th></tr></thead>
+			<thead><tr class="first_ligne"><th scope="col"><label class="sentinelle-tout" title="<:sentinelle:selectionner_page:>"><input type="checkbox" data-sentinelle-tout aria-label="<:sentinelle:selectionner_page:>" /><span class="visually-hidden"><:sentinelle:colonne_selection:></span></label></th><th scope="col"><:sentinelle:colonne_gravite:></th><th scope="col"><:sentinelle:colonne_fichier:></th><th scope="col"><:sentinelle:colonne_motifs:></th><th scope="col"><:sentinelle:colonne_action:></th></tr></thead>
 			<tbody>
 			<BOUCLE_fichiers(DATA){source table, #GET{fichiers}}>
 			<tr data-sentinelle-ligne data-search="#VALEUR{recherche}" data-gravite="#VALEUR{gravite}" data-regles="#VALEUR{regles_filtre}" data-repertoire="#VALEUR{repertoire}">
